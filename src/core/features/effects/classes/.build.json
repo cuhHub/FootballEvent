@@ -1,0 +1,10 @@
+{
+    "build_order" : [
+        "Effect.lua",
+        "FlashEffect.lua"
+    ],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : []
+}

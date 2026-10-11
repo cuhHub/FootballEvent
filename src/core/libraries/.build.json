@@ -1,0 +1,23 @@
+{
+    "build_order" : [],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : [
+        {
+            "repo_url" : "https://github.com/cuhHub/open-addon-common",
+            "branch" : "main",
+            "paths" : [
+                "src/libraries/Commands.lua",
+                "src/libraries/Grid.lua",
+                "src/libraries/Math.lua",
+                "src/libraries/Matrix.lua",
+                "src/libraries/Player.lua",
+                "src/libraries/String.lua",
+                "src/libraries/Table.lua",
+                "src/libraries/Time.lua",
+                "src/libraries/Vehicle.lua"
+            ]
+        }
+    ]
+}

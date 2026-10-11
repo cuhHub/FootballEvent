@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist folder_path="data/missions/FootballEvent" file_store="4" name="(cuhHub) Football Event">
+	<locations location_id_counter="1" component_id_counter="1">
+		<locations>
+			<l id="1" name="Assets" env_mod_spawn_num="1">
+				<components>
+					<c component_type="3" id="1" name="event_hub" dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_1.xml" vehicle_file_store="4" vehicle_is_static="true" vehicle_is_invulnerable="true">
+						<spawn_transform 30="-2.952902" 31="2.875" 32="-1.608876"/>
+						<spawn_bounds>
+							<min x="-8.375" y="-1.125" z="-6.625"/>
+							<max x="8.375" y="4.625" z="10.125"/>
+						</spawn_bounds>
+						<spawn_local_offset y="-1.75" z="-1.75"/>
+						<graph_links/>
+					</c>
+				</components>
+			</l>
+		</locations>
+	</locations>
+</playlist>
+

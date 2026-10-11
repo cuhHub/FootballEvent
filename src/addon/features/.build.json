@@ -1,0 +1,9 @@
+{
+    "build_order" : [
+        "football"
+    ],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : []
+}

@@ -1,0 +1,14 @@
+{
+    "build_order" : [
+        "framework",
+        "init.lua",
+        "core",
+        "addon",
+        "config.lua",
+        "main.lua"
+    ],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : []
+}

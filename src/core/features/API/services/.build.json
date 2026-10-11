@@ -1,0 +1,15 @@
+{
+    "build_order" : [
+        "init.lua",
+        "Conversion.lua",
+        "Player.lua",
+        "Server.lua",
+        "Events.lua",
+        "Message.lua",
+        "PersistentData.lua",
+        "FaultReports.lua"
+    ],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : []
+}

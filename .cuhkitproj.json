@@ -1,0 +1,8 @@
+{
+   "name": "FootballEvent",
+   "project_type": "addon",
+   "path": ".",
+   "src": "src",
+   "build_destination": ".build\\addon.lua",
+   "stormworks_addons_path": null
+}

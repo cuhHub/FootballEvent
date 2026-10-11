@@ -1,0 +1,32 @@
+{
+    "build_order" : [
+        "API",
+        "assets",
+        "cooldowns",
+        "cleanup",
+        "effects",
+        "janitor",
+        "message",
+        "events"
+    ],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : [
+        {
+            "repo_url" : "https://github.com/cuhHub/open-addon-common",
+            "branch" : "main",
+            "paths" : [
+                "src/features/API",
+                "src/features/assets",
+                "src/features/cooldowns",
+                "src/features/cleanup",
+                "src/features/effects",
+                "src/features/janitor",
+                "src/features/message",
+                "src/features/events"
+            ],
+            "destination" : "."
+        }
+    ]
+}

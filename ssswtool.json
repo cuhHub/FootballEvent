@@ -1,0 +1,14 @@
+{
+	"name": "FootballEvent",
+	"entrypoint": ".build/addon.lua",
+	"src": ["."],
+	"out": ".build/addon.lua",
+	"transformers": {
+		"tracing": {
+			"mode": "simple",
+			"hookOnTick": false,
+			"hookHttpReply": false,
+			"hookOnCustomCommand": true
+		}
+	}
+}

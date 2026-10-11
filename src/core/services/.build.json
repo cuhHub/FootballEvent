@@ -1,0 +1,17 @@
+{
+    "build_order" : [],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : [
+        {
+            "repo_url" : "https://github.com/cuhHub/open-addon-common",
+            "branch" : "main",
+            "paths" : [
+                "src/services/ID.lua",
+                "src/services/UI.lua",
+                "src/services/Flags.lua"
+            ]
+        }
+    ]
+}

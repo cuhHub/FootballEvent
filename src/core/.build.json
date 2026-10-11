@@ -1,0 +1,12 @@
+{
+    "build_order" : [
+        "classes",
+        "libraries",
+        "services",
+        "features"
+    ],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : []
+}

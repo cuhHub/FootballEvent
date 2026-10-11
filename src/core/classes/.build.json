@@ -1,0 +1,15 @@
+{
+    "build_order" : [],
+    "ignore" : [],
+    "import_web" : [],
+    "import_local" : [],
+    "import_git" : [
+        {
+            "repo_url" : "https://github.com/cuhHub/open-addon-common",
+            "branch" : "main",
+            "paths" : [
+                "src/classes/Color.lua"
+            ]
+        }
+    ]
+}

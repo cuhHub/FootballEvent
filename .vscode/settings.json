@@ -1,0 +1,7 @@
+{
+    "Lua.workspace.ignoreDir": [
+        ".vscode",
+        ".build"
+    ],
+    "Lua.runtime.version": "Lua 5.3"
+}
