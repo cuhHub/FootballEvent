@@ -310,12 +310,29 @@ end
     Announces the event start to all players.
 ]]
 function Addon.Events:_AnnounceEventStart()
-    Addon.Message:Send(
-        nil,
-        "Event",
-        "The event has started! Good luck!\n\nYour Objective:\n"..self.EventObjectiveMessage,
-        Addon.Enums.NotificationType.INFO
-    )
+    local partakingCount = self:GetPartakingPlayerCount()
+
+    for _, player in pairs(self:GetPartakingPlayers()) do
+        ---@type table<integer, string>
+        local points = {
+            self.EventObjectiveMessage,
+            ("There are %s partaking players."):format(partakingCount)
+        }
+
+        local team = self:GetPlayerTeam(player)
+
+        if team then
+            table.insert(points, ("You are apart of the '%s' team."):format(team.Name))
+        end
+
+        Addon.Message:Send(
+            player,
+            "Event",
+            "The event has started! Good luck!\n%s",
+            Addon.Enums.NotificationType.INFO,
+            Addon.Libs.String:BulletList(points, "-")
+        )
+    end
 
     Addon.API.Server:SendLiveChat(
         "Event",
