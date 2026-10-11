@@ -67,3 +67,4 @@ Config.Cleanup.ObjectTypeExceptions = {
 Config.Football = {}
 Config.Football.NeededGoalsToWin = 5
 Config.Football.MinimumPlayers = 2
+Config.Football.KartFlipCooldownSecs = 5

@@ -42,6 +42,7 @@ function Addon.Football:ServiceStart()
     self:SetupSettings()
     self:SetupTeams()
     self:HandleEventLifecycle()
+    self:CreateCommands()
 end
 
 --[[
@@ -59,7 +60,6 @@ function Addon.Football:HandleEventLifecycle()
         Addon.FootballArena:RemoveArena()
         Addon.FootballBall:RemoveBall()
         Addon.FootballScores:ResetScores()
-        self:DespawnParticipants()
     end)
 
     Addon.Events.OnTick:Connect(function()
@@ -76,8 +76,7 @@ function Addon.Football:HandleEventLifecycle()
 
     ---@param teamScore TeamScore
     Addon.FootballScores.OnTeamScore:Connect(function(teamScore)
-        self:ResetParticipants()
-        Addon.FootballBall:ResetBall()
+        self:Reset()
     end)
 
     ---@param teamScore TeamScore
@@ -87,22 +86,28 @@ function Addon.Football:HandleEventLifecycle()
     end)
 
     ---@param player NoirPlayer
-    Addon.Events.OnParticipantAdd:Connect(function(player)
-
-    end)
-
-    ---@param player NoirPlayer
     ---@param reason string|nil
     Addon.Events.OnParticipantRemove:Connect(function(player, reason)
-        
+        if not Addon.FootballKarts:HasKart(player) then
+            return
+        end
+
+        Addon.FootballKarts:RemoveKart(player)
     end)
 end
 
 --[[
-    Spawns players.
+    Resets the match (not scores!).
+]]
+function Addon.Football:Reset()
+    Addon.FootballBall:ResetBall()
+    Addon.FootballKarts:ResetKarts()
+end
+
+--[[
+    Spawns participants in their karts at appropriate spawn points.
 ]]
 function Addon.Football:SpawnParticipants()
-    -- below is temporary for dev
     local arena = Addon.FootballArena:GetArena()
 
     for _, team in pairs(Addon.Events:GetTeams()) do
@@ -112,28 +117,13 @@ function Addon.Football:SpawnParticipants()
         for memberIndex, position in pairs(positions) do
             local member = members[memberIndex]
 
-            if not member then
+            if not member then -- no more members, no need to iterate further
                 break
             end
 
-            member.Player:Teleport(position)
+            Addon.FootballKarts:SpawnKart(member.Player, position)
         end
     end
-end
-
---[[
-    Resets participants.
-]]
-function Addon.Football:ResetParticipants()
-    self:DespawnParticipants()
-    self:SpawnParticipants()
-end
-
---[[
-    Despawns participants.
-]]
-function Addon.Football:DespawnParticipants()
-    -- todo
 end
 
 --[[
@@ -186,4 +176,13 @@ function Addon.Football:SetupSettings()
     Noir.Services.GameSettingsService:SetSetting("player_damage", false)
     Noir.Services.GameSettingsService:SetSetting("vehicle_damage", false)
     Noir.Services.GameSettingsService:SetSetting("infinite_batteries", true)
+end
+
+--[[
+    Creates commands.
+]]
+function Addon.Football:CreateCommands()
+    Addon.Events:CreateEventAdminCommand("reset", function(player, args)
+        self:Reset()
+    end)
 end
