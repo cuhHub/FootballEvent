@@ -63,12 +63,12 @@ function Addon.Classes.Arena:Init(asset, spawnPosition)
     --[[
         The ball spawn Y offset.
     ]]
-    self.BALL_SPAWN_Y_OFFSET = 3
+    self.BALL_SPAWN_Y_OFFSET = 1
 
     --[[
         The team spawn Y offset.
     ]]
-    self.TEAM_SPAWN_Y_OFFSET = 2
+    self.TEAM_SPAWN_Y_OFFSET = 1
 end
 
 --[[
@@ -195,6 +195,17 @@ function Addon.Classes.Arena:ConvertTeamNameToSign(team)
 end
 
 --[[
+    Triggers the horn.
+]]
+function Addon.Classes.Arena:TriggerHorn()
+    if not self:HasLoaded() then
+        error("Addon.Classes.Arena:TriggerHorn()", "Arena is not loaded.")
+    end
+
+    self:GetPrimaryBody():PressButton("horn")
+end
+
+--[[
     Returns the position of a given sign.
 ]]
 ---@param signName string The sign to get the position of
@@ -248,7 +259,6 @@ function Addon.Classes.Arena:IsBehindGoal(position, team)
     end
 
     local goalPosition = self:GetGoalPosition(team)
-    Addon.Logger:Debug("%s (goal) vs %s (ball)", Noir.Libraries.Matrix:ToString(goalPosition), Noir.Libraries.Matrix:ToString(position))
 
     if self:TeamNeedsInvertedLogic(team) then
         return position[15] > goalPosition[15]
