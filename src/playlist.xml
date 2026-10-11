@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <playlist folder_path="data/missions/FootballEvent" file_store="4" name="(cuhHub) Football Event">
-	<locations location_id_counter="1" component_id_counter="1">
+	<locations location_id_counter="1" component_id_counter="5">
 		<locations>
 			<l id="1" name="Assets" env_mod_spawn_num="1">
 				<components>
@@ -11,6 +11,45 @@
 							<max x="8.375" y="4.625" z="10.125"/>
 						</spawn_bounds>
 						<spawn_local_offset y="-1.75" z="-1.75"/>
+						<graph_links/>
+					</c>
+					<c component_type="3" id="2" name="arena
+SpawnCountPerTeam=12" dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_2.xml" vehicle_file_store="4" vehicle_is_static="true" vehicle_is_invulnerable="true">
+						<spawn_transform 30="-133.263519" 31="2.749994" 32="84.914192"/>
+						<spawn_bounds>
+							<min x="-30.625" y="-0.375" z="-44.125"/>
+							<max x="30.625" y="5.125" z="62.875"/>
+						</spawn_bounds>
+						<spawn_local_offset y="-2.375" z="-9.375"/>
+						<graph_links/>
+					</c>
+					<c component_type="3" id="3" name='kart
+Team="Red' dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_3.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
+						<spawn_transform 30="-82.564072" 31="0.749999" 32="93.126816"/>
+						<spawn_bounds>
+							<min x="-0.875" y="-0.375" z="-1.125"/>
+							<max x="0.875" y="1.125" z="1.375"/>
+						</spawn_bounds>
+						<spawn_local_offset y="-0.375" z="-0.125"/>
+						<graph_links/>
+					</c>
+					<c component_type="3" id="4" name='kart
+Team="Blue' dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_4.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
+						<spawn_transform 30="-86.647675" 31="0.750002" 32="92.65654"/>
+						<spawn_bounds>
+							<min x="-0.875" y="-0.375" z="-1.125"/>
+							<max x="0.875" y="1.125" z="1.375"/>
+						</spawn_bounds>
+						<spawn_local_offset y="-0.375" z="-0.125"/>
+						<graph_links/>
+					</c>
+					<c component_type="3" id="5" name="ball" dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_5.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
+						<spawn_transform 30="-84.59169" 31="0.375002" 32="99.05394"/>
+						<spawn_bounds>
+							<min x="-0.375" y="-0.125" z="-0.375"/>
+							<max x="0.375" y="0.625" z="0.375"/>
+						</spawn_bounds>
+						<spawn_local_offset y="-0.25"/>
 						<graph_links/>
 					</c>
 				</components>
