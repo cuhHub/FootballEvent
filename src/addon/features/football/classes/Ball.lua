@@ -135,7 +135,8 @@ function Addon.Classes.Ball:Reset()
         error("Addon.Classes.Ball:Reset()", "Ball is not spawned.")
     end
 
-    self:GetVehicle():Teleport(self:GetSpawnPosition())
+    self:Despawn()
+    self:Spawn()
 end
 
 --[[
