@@ -127,6 +127,9 @@ function Addon.FootballScores:CelebrateGoal(teamScore)
         teamScore:GetScore(),
         teamScore:GetWinThreshold()
     )
+
+    local arena = Addon.FootballArena:GetArena()
+    arena:TriggerHorn()
 end
 
 --[[
