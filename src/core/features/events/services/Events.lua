@@ -249,6 +249,7 @@ function Addon.Events:TeleportPlayerToHub(player)
     end
 
     player:Teleport(Noir.Libraries.Matrix:Offset(self.HUB_POSITION, 0, 5, 0))
+    Addon.Logger:Info("Events: Teleported %s to the hub.", Addon.Libs.Player:FormatPlayerName(player))
 end
 
 --[[
@@ -263,6 +264,18 @@ function Addon.Events:SpawnHub()
 end
 
 --[[
+    Returns if there are enough players to start.
+]]
+---@return boolean
+function Addon.Events:HasEnoughPlayers()
+    if Addon.Flags:IsEnabled("Events.IgnoreMinimumPlayers") then
+        return true
+    end
+
+    return self:GetPlayerCount() >= self.MinimumPlayersToStart
+end
+
+--[[
     Starts the event.
 ]]
 function Addon.Events:StartEvent()
@@ -271,7 +284,7 @@ function Addon.Events:StartEvent()
         return
     end
 
-    if self:GetPlayerCount() < self.MinimumPlayersToStart then
+    if not self:HasEnoughPlayers() then
         Addon.Logger:Warning("Events: Cannot start event, not enough players.")
         return
     end
@@ -289,6 +302,8 @@ function Addon.Events:StartEvent()
 
     self:_AnnounceEventStart()
     self.OnStart:Fire()
+
+    Addon.Logger:Info("Events: Event started.")
 end
 
 --[[
@@ -302,7 +317,7 @@ function Addon.Events:_AnnounceEventStart()
         Addon.Enums.NotificationType.INFO
     )
 
-    Addon.Interface:SendLiveChat(
+    Addon.API.Server:SendLiveChat(
         "Event",
         "The event has started!",
         ":money_with_wings:",
@@ -331,6 +346,8 @@ function Addon.Events:EndEvent()
 
     self:_AnnounceEventEnd(winners)
     self.OnEnd:Fire(winners)
+
+    Addon.Logger:Info("Events: Event ended.")
 end
 
 --[[
@@ -356,7 +373,7 @@ function Addon.Events:_AnnounceEventEnd(winners)
         Addon.Enums.NotificationType.SUCCESS
     )
 
-    Addon.Interface:SendLiveChat(
+    Addon.API.Server:SendLiveChat(
         "Event",
         "The event has ended! Winners: "..table.concat(formattedWinners, ", "),
         ":crown:",
@@ -409,6 +426,7 @@ end
 ---@param player NoirPlayer The player to add
 function Addon.Events:AddWinningPlayer(player)
     self.WinningPlayers[player.ID] = player
+    Addon.Logger:Info("Events: Added player %s to winners.", Addon.Libs.Player:FormatPlayerName(player))
 end
 
 --[[
@@ -470,6 +488,8 @@ end
 function Addon.Events:CreateTeam(ID, name)
     local team = Addon.Classes.Team:New(ID, name)
     self.Teams[ID] = team
+
+    Addon.Logger:Info("Events: Created team %s (%s).", name, ID)
 
     return team
 end
@@ -547,6 +567,8 @@ function Addon.Events:MakePlayerSpectate(player)
     local spectator = Addon.Classes.Spectator:New(player)
     self.SpectatingPlayers[player.ID] = spectator
 
+    Addon.Logger:Info("Events: Made %s spectate.", Addon.Libs.Player:FormatPlayerName(player))
+
     return spectator
 end
 
@@ -581,6 +603,8 @@ function Addon.Events:StopPlayerSpectating(player)
 
     spectator:Cleanup()
     self.SpectatingPlayers[player.ID] = nil
+
+    Addon.Logger:Info("Events: Stopped %s from spectating.", Addon.Libs.Player:FormatPlayerName(player))
 end
 
 --[[
@@ -666,6 +690,8 @@ function Addon.Events:AddPartakingPlayer(player)
     player:SetAudioMood(4)
     self.PartakingPlayers[player.ID] = player
     self.OnParticipantAdd:Fire(player)
+
+    Addon.Logger:Info("Events: Added %s as a participant.", Addon.Libs.Player:FormatPlayerName(player))
 end
 
 --[[
@@ -712,7 +738,7 @@ function Addon.Events:RemovePartakingPlayer(player, reason)
             reason
         )
 
-        Addon.Interface:SendLiveChat(
+        Addon.API.Server:SendLiveChat(
             "Event",
             Addon.Libs.Player:FormatPlayerName(player).." has been eliminated.",
             ":x:",
@@ -723,6 +749,8 @@ function Addon.Events:RemovePartakingPlayer(player, reason)
     else
         self:TeleportPlayerToHub(player)
     end
+
+    Addon.Logger:Info("Events: Removed %s as a participant.", Addon.Libs.Player:FormatPlayerName(player))
 end
 
 Addon.Events.Eliminate = Addon.Events.RemovePartakingPlayer
@@ -777,7 +805,7 @@ function Addon.Events:SendAdministrativeAnnouncement(message, ...)
         ...
     )
 
-    Addon.Interface:SendLiveChat(
+    Addon.API.Server:SendLiveChat(
         "Event",
         ... and message:format(...) or message,
         ":loudspeaker:",
@@ -958,13 +986,10 @@ function Addon.Events:CreateEventInfoUI()
 
         Addon.UI:OnUIUpdate(nil, function()
             if not self.HasEventStarted then
-                local playerCount = self:GetPlayerCount()
-                local neededPlayers = self.MinimumPlayersToStart - playerCount
-
                 eventInfo.Text = ("---\ncuhHub\nEvent\n---\n%s:\n%s\n\n%s."):format(
                     self.EventName:upper(),
                     self.EventDescription,
-                    playerCount < self.MinimumPlayersToStart and ("Waiting for %d more player(s)..."):format(neededPlayers) or "Starting soon..."
+                    not self:HasEnoughPlayers() and ("Waiting for %d more player(s)..."):format(self.MinimumPlayersToStart - self:GetPlayerCount()) or "Starting soon..."
                 )
 
                 eventInfo.Y = 0.55
@@ -1052,5 +1077,10 @@ function Addon.Events:RegisterFlags()
     Addon.Flags:RegisterFlag(
         "Events.HubTeleport",
         true
+    )
+
+    Addon.Flags:RegisterFlag(
+        "Events.IgnoreMinimumPlayers",
+        false
     )
 end

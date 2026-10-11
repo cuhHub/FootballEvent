@@ -88,6 +88,11 @@ end
 ]]
 function Addon.Classes.Spectator:SpectateNoOne()
     self.TargetPlayer = nil
+
+    Addon.Logger:Info(
+        "Spectator: %s set to spectate no one.",
+        Addon.Libs.Player:FormatPlayerName(self.Player)
+    )
 end
 
 --[[
@@ -153,6 +158,12 @@ function Addon.Classes.Spectator:SpectatePlayer(player)
         "Spectating",
         "You are now spectating %s.",
         Addon.Enums.NotificationType.SUCCESS,
+        Addon.Libs.Player:FormatPlayerName(self.TargetPlayer)
+    )
+
+    Addon.Logger:Info(
+        "Spectator: Making %s spectate %s.",
+        Addon.Libs.Player:FormatPlayerName(self.Player),
         Addon.Libs.Player:FormatPlayerName(self.TargetPlayer)
     )
 end

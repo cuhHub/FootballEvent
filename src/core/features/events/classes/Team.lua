@@ -61,6 +61,8 @@ function Addon.Classes.Team:AddMember(player)
     self.Members[player.ID] = member
 
     member:OnAdd()
+
+    Addon.Logger:Info("Team: Added %s to team %s (%s).", Addon.Libs.Player:FormatPlayerName(player), self.Name, self.ID)
 end
 
 --[[
@@ -79,6 +81,8 @@ end
 function Addon.Classes.Team:RemoveMember(member)
     member:OnRemove()
     self.Members[member.Player.ID] = nil
+
+    Addon.Logger:Info("Team: Removed %s from team %s (%s).", Addon.Libs.Player:FormatPlayerName(member.Player), self.Name, self.ID)
 end
 
 --[[
