@@ -589,6 +589,8 @@ end
 ---@return Spectator
 function Addon.Events:MakePlayerSpectate(player)
     local spectator = Addon.Classes.Spectator:New(player)
+    spectator:SpectateRandom()
+
     self.SpectatingPlayers[player.ID] = spectator
 
     Addon.Logger:Info("Events: Made %s spectate.", Addon.Libs.Player:FormatPlayerName(player))
