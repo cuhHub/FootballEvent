@@ -188,4 +188,24 @@ function Addon.Football:CreateCommands()
     Addon.Events:CreateEventAdminCommand("reset", function(player, args)
         self:Reset()
     end)
+
+    Addon.Events:CreateEventAdminCommand("take", function(player, args)
+        local teamID = tonumber(args[1])
+
+        if not teamID then
+            return
+        end
+
+        local team = Addon.Events:GetTeamByID(teamID)
+
+        if not team then
+            return
+        end
+
+        local score = Addon.FootballScores:GetTeamScore(team)
+
+        if score then
+            score:DecrementScore()
+        end
+    end)
 end
