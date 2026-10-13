@@ -106,6 +106,13 @@ function Addon.Classes.TeamScore:IncrementScore()
 end
 
 --[[
+    Decrements the score.
+]]
+function Addon.Classes.TeamScore:DecrementScore()
+    self:SetScore(self:GetScore() - 1)
+end
+
+--[[
     Resets the score.
 ]]
 function Addon.Classes.TeamScore:ResetScore()
