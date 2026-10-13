@@ -47,7 +47,7 @@ function Addon.FootballArena:ServiceStart()
     --[[
         The arena spawn position.
     ]]
-    self.SpawnPosition = Noir.Libraries.Matrix:Offset(Addon.Events.HUB_POSITION, 1000, 0, 0)
+    self.SpawnPosition = Noir.Libraries.Matrix:Offset(Addon.Events.HUB_POSITION, 100, 0, 0)
 end
 
 --[[
