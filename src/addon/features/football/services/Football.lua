@@ -52,7 +52,10 @@ function Addon.Football:HandleEventLifecycle()
     Addon.Events.OnStart:Connect(function()
         Addon.FootballArena:SpawnArena(function()
             Addon.FootballBall:SpawnBall()
-            self:SpawnParticipants()
+
+            Addon.Events.EventEndCloset:Add(Noir.Services.TaskService:AddTimeTask(function()
+                self:SpawnParticipants()
+            end, Config.Football.StartDelaySecs))
         end)
     end)
 

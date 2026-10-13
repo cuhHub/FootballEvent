@@ -68,3 +68,4 @@ Config.Football = {}
 Config.Football.NeededGoalsToWin = 5
 Config.Football.MinimumPlayers = 2
 Config.Football.KartFlipCooldownSecs = 5
+Config.Football.StartDelaySecs = 10 -- to account for multiplayer physics catch-up
