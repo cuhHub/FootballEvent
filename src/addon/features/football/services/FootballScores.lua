@@ -118,14 +118,27 @@ end
 ]]
 ---@param teamScore TeamScore The team score instance
 function Addon.FootballScores:CelebrateGoal(teamScore)
+    local name = teamScore:GetTeam().Name
+    local score = teamScore:GetScore()
+    local winThreshold = teamScore:GetWinThreshold()
+
     Addon.Message:Send(
         nil,
         "SCORE!!!",
         "%s has scored a goal (%s/%s)!",
         Addon.Enums.NotificationType.SUCCESS,
-        teamScore:GetTeam().Name,
-        teamScore:GetScore(),
-        teamScore:GetWinThreshold()
+        name,
+        score,
+        winThreshold
+    )
+
+    Addon.API.Server:SendLiveChat(
+        "Score",
+        ("%s has scored a goal (%s/%s)!"):format(name, score, winThreshold),
+        ":soccer:",
+        225,
+        255,
+        225
     )
 
     local arena = Addon.FootballArena:GetArena()
