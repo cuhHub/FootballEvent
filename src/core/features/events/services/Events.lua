@@ -123,6 +123,11 @@ function Addon.Events:ServiceInit()
     self.OnParticipantRemove = Noir.Libraries.Events:Create()
 
     --[[
+        A closet that is cleaned up upon the event ending.
+    ]]
+    self.EventEndCloset = Addon.Janitor:CreateCloset()
+
+    --[[
         The position of the hub.
     ]]
     self.HUB_POSITION = matrix.translation(0, 500, 0)
@@ -360,6 +365,8 @@ function Addon.Events:EndEvent()
     self:ClearTeams()
     self:ClearSpectators()
     self:ClearParticipants()
+
+    self.EventEndCloset:Cleanup()
 
     self:_AnnounceEventEnd(winners)
     self.OnEnd:Fire(winners)
