@@ -84,6 +84,12 @@ function Addon.Classes.TeamScore:SetScore(score)
         return
     end
 
+    local winThreshold = self:GetWinThreshold()
+
+    if score < 0 or score > winThreshold then
+        return
+    end
+
     local before = self:GetScore()
     self.Score = score
 
@@ -93,7 +99,7 @@ function Addon.Classes.TeamScore:SetScore(score)
         self.OnScoreChanged:Fire()
     end
 
-    if self:GetScore() >= self:GetWinThreshold() then
+    if self:GetScore() >= winThreshold then
         self.OnScorePassWinThreshold:Fire()
     end
 end
