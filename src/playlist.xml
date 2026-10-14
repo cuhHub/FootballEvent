@@ -27,8 +27,8 @@ SpawnCountPerTeam=12" dynamic_object_type="2" character_outfit_category="11" cha
 Team="Red' dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_3.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
 						<spawn_transform 30="-82.564072" 31="0.749999" 32="93.126816"/>
 						<spawn_bounds>
-							<min x="-0.625" y="-0.375" z="-1.125"/>
-							<max x="0.625" y="1.125" z="1.375"/>
+							<min x="-1.125" y="-0.375" z="-1.125"/>
+							<max x="1.125" y="1.125" z="1.375"/>
 						</spawn_bounds>
 						<spawn_local_offset y="-0.375" z="-0.125"/>
 						<graph_links/>
@@ -37,8 +37,8 @@ Team="Red' dynamic_object_type="2" character_outfit_category="11" character_type
 Team="Blue' dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_4.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
 						<spawn_transform 30="-86.647675" 31="0.750002" 32="92.65654"/>
 						<spawn_bounds>
-							<min x="-0.625" y="-0.375" z="-1.125"/>
-							<max x="0.625" y="1.125" z="1.375"/>
+							<min x="-1.125" y="-0.375" z="-1.125"/>
+							<max x="1.125" y="1.125" z="1.375"/>
 						</spawn_bounds>
 						<spawn_local_offset y="-0.375" z="-0.125"/>
 						<graph_links/>
