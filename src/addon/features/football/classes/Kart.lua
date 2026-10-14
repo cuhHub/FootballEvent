@@ -61,6 +61,11 @@ function Addon.Classes.Kart:Init(asset, spawnPosition, player)
         The kart flip cooldown duration (seconds).
     ]]
     self.FLIP_COOLDOWN_DURATION = Config.Football.KartFlipCooldownSecs
+
+    --[[
+        The kart flip offset Y for teleport (meters).
+    ]]
+    self.FLIP_OFFSET_Y = 2
 end
 
 --[[
@@ -140,7 +145,7 @@ function Addon.Classes.Kart:Flip()
     end
 
     local position = self:GetPosition()
-    local newPosition = matrix.translation(position[13], position[14] + 5, position[15])
+    local newPosition = matrix.translation(position[13], position[14] + self.FLIP_OFFSET_Y, position[15])
 
     self:GetVehicle():Teleport(newPosition)
 
