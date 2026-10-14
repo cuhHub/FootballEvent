@@ -63,7 +63,7 @@ function Addon.Classes.Arena:Init(asset, spawnPosition)
     --[[
         The ball spawn Y offset.
     ]]
-    self.BALL_SPAWN_Y_OFFSET = 1
+    self.BALL_SPAWN_Y_OFFSET = 1.25
 
     --[[
         The team spawn Y offset.
