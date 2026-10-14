@@ -208,4 +208,8 @@ function Addon.Football:CreateCommands()
             score:DecrementScore()
         end
     end)
+
+    Addon.Events:CreateEventAdminCommand("spectate", function(player, args)
+        Addon.Events:MakePlayerSpectate(player)
+    end)
 end
