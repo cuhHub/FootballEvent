@@ -721,13 +721,13 @@ function Addon.Events:AddPartakingPlayer(player)
 end
 
 --[[
-    Removes a player as a participant.
+    Unregisters a player as a participant.
 ]]
----@param player NoirPlayer The player to remove
----@param reason string|nil The reason the player was removed
-function Addon.Events:RemovePartakingPlayer(player, reason)
+---@param player NoirPlayer The player to unregister
+---@param reason string|nil The reason the player was unregistered
+function Addon.Events:UnregisterPartakingPlayer(player, reason)
     if not self:IsPlayerPartaking(player) then
-        Addon.Logger:Warning("Events: Cannot remove player %s as a participant, they are not partaking in the event.", player.Name)
+        Addon.Logger:Warning("Events: Cannot unregister player %s as a participant, they are not partaking in the event.", player.Name)
         return
     end
 
@@ -739,12 +739,28 @@ function Addon.Events:RemovePartakingPlayer(player, reason)
         team:RemoveMember(team:GetMember(player))
     end
 
+    self.PartakingPlayers[player.ID] = nil
+
+    Addon.Logger:Info("Events: Unregistered %s as a participant.", Addon.Libs.Player:FormatPlayerName(player))
+end
+
+--[[
+    Removes a player as a participant.
+]]
+---@param player NoirPlayer The player to remove
+---@param reason string|nil The reason the player was removed
+function Addon.Events:RemovePartakingPlayer(player, reason)
+    if not self:IsPlayerPartaking(player) then
+        Addon.Logger:Warning("Events: Cannot remove player %s as a participant, they are not partaking in the event.", player.Name)
+        return
+    end
+
+    self:UnregisterPartakingPlayer(player, reason)
+
     player:SetAudioMood(2)
 
     Addon.Libs.Player:HealPlayer(player)
     Addon.Libs.Player:ClearPlayerItems(player)
-
-    self.PartakingPlayers[player.ID] = nil
 
     if self.HasEventStarted then
         self:MakePlayerSpectate(player)
@@ -775,8 +791,6 @@ function Addon.Events:RemovePartakingPlayer(player, reason)
     else
         self:TeleportPlayerToHub(player)
     end
-
-    Addon.Logger:Info("Events: Removed %s as a participant.", Addon.Libs.Player:FormatPlayerName(player))
 end
 
 Addon.Events.Eliminate = Addon.Events.RemovePartakingPlayer
@@ -809,7 +823,7 @@ end
 ---@param player NoirPlayer The player that left
 function Addon.Events:_HandlePlayerLeave(player)
     if self:IsPlayerPartaking(player) then
-        self:RemovePartakingPlayer(player, "Player left")
+        self:UnregisterPartakingPlayer(player, "Player left")
     end
 
     if self:IsPlayerSpectating(player) then
