@@ -18,17 +18,17 @@ SpawnCountPerTeam=12" dynamic_object_type="2" character_outfit_category="11" cha
 						<spawn_transform 30="-133.263519" 31="2.749994" 32="84.914192"/>
 						<spawn_bounds>
 							<min x="-30.625" y="-0.875" z="-44.125"/>
-							<max x="30.625" y="4.625" z="63.125"/>
+							<max x="30.625" y="18.875" z="63.125"/>
 						</spawn_bounds>
-						<spawn_local_offset y="-1.875" z="-9.5"/>
+						<spawn_local_offset y="-9" z="-9.5"/>
 						<graph_links/>
 					</c>
 					<c component_type="3" id="3" name='kart
 Team="Red' dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_3.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
 						<spawn_transform 30="-82.564072" 31="0.749999" 32="93.126816"/>
 						<spawn_bounds>
-							<min x="-1.125" y="-0.375" z="-1.125"/>
-							<max x="1.125" y="1.125" z="1.375"/>
+							<min x="-0.625" y="-0.375" z="-1.125"/>
+							<max x="0.625" y="1.125" z="1.375"/>
 						</spawn_bounds>
 						<spawn_local_offset y="-0.375" z="-0.125"/>
 						<graph_links/>
@@ -37,8 +37,8 @@ Team="Red' dynamic_object_type="2" character_outfit_category="11" character_type
 Team="Blue' dynamic_object_type="2" character_outfit_category="11" character_type="1" vehicle_file_name="data/missions_working/vehicle_4.xml" vehicle_file_store="4" vehicle_is_invulnerable="true">
 						<spawn_transform 30="-86.647675" 31="0.750002" 32="92.65654"/>
 						<spawn_bounds>
-							<min x="-1.125" y="-0.375" z="-1.125"/>
-							<max x="1.125" y="1.125" z="1.375"/>
+							<min x="-0.625" y="-0.375" z="-1.125"/>
+							<max x="0.625" y="1.125" z="1.375"/>
 						</spawn_bounds>
 						<spawn_local_offset y="-0.375" z="-0.125"/>
 						<graph_links/>
